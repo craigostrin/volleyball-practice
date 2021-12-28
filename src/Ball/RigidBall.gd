@@ -1,10 +1,13 @@
 extends RigidBody2D
 
+signal stuck_on_floor
+
 var is_on_floor := false
 var floortestind := 0
 
 onready var vis_notifier: VisibilityNotifier2D = $VisibilityNotifier2D
 onready var offscreen_indicator: Node2D = $OffscreenIndicator
+onready var ftimer: Timer = $FloorDetector/FloorTimer
 
 
 func _ready() -> void:
@@ -13,7 +16,9 @@ func _ready() -> void:
 	offscreen_indicator.hide()
 	
 	connect("body_entered", self, "_on_RigidBall_body_entered")
-	connect("body_exited", self, "_on_RigidBall_body_exited")
+	$FloorDetector.connect("body_entered", self, "_on_FloorDetector_body_entered_exited", [true])
+	$FloorDetector.connect("body_exited", self, "_on_FloorDetector_body_entered_exited", [false])
+	ftimer.connect("timeout", self, "_on_FloorTimer_timeout")
 
 
 func _physics_process(delta: float) -> void:
@@ -31,13 +36,19 @@ func screen_entered_exited(has_entered: bool) -> void:
 
 
 func _on_RigidBall_body_entered(body: Node) -> void:
-	if body.name == "Floor" and not is_on_floor:
-		prints("ay i'm on da floor ", floortestind)
-		is_on_floor = true
-		floortestind += 1
+	pass
 
 
-func _on_RigidBall_body_exited(body: Node) -> void:
-	if body.name == "Floor":
-		is_on_floor = false
-		prints("ay no mo flo", floortestind)
+func _on_FloorDetector_body_entered_exited(body: Node, has_entered: bool) -> void:
+	if not body.name == "Floor":
+		return
+	
+	if has_entered:
+		ftimer.start()
+	else:
+		ftimer.stop()
+
+
+func _on_FloorTimer_timeout() -> void:
+	emit_signal("stuck_on_floor")
+	print("im stuck")

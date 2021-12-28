@@ -1,28 +1,30 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/RigidBall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Ball/RigidBall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Game.gd" type="Script" id=3]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 40, 10 )
+[ext_resource path="res://src/BallRelease.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 40, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 595, 10 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="BallSpawn" type="Position2D" parent="."]
-position = Vector2( 211.679, 193.84 )
+position = Vector2( 212, 194 )
 
 [node name="BallRelease" type="StaticBody2D" parent="BallSpawn"]
 position = Vector2( 0, 38.055 )
 collision_layer = 4
 collision_mask = 2
+script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallSpawn/BallRelease"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="BallSpawn/BallRelease"]
 wait_time = 3.0
@@ -30,11 +32,8 @@ one_shot = true
 autostart = true
 
 [node name="RigidBall" parent="." instance=ExtResource( 1 )]
-position = Vector2( 187.741, 555.437 )
+position = Vector2( 212, 194 )
 mass = 20.0
-continuous_cd = 2
-contacts_reported = 2
-contact_monitor = true
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 488, 591 )
@@ -42,7 +41,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2( 1.61438, 61.6999 )
@@ -51,7 +50,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Wall2" type="StaticBody2D" parent="."]
 position = Vector2( 1023.14, 70.8032 )
@@ -60,7 +59,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 324.826, 407.573 )
