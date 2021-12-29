@@ -1,5 +1,7 @@
 extends Node2D
 ### TO DO ###
+# UI, art, sound
+# hit tracker (wall, or arm? both?)
 # button to turn around
 # mini achievements
 # like, bounce ball off head and then hit wall
@@ -7,6 +9,8 @@ extends Node2D
 # possibly v1.5
 # 2.0: 2 player mode!
 
+var hit_count := 0
+var wall_count := 0
 
 const ball_scene := preload("res://src/Ball/RigidBall.tscn")
 

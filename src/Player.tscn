@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Player.gd" type="Script" id=1]
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 24.8944
-
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 31.6184
-height = 91.8766
+[ext_resource path="res://art/player/head.png" type="Texture" id=2]
+[ext_resource path="res://art/player/body.png" type="Texture" id=3]
+[ext_resource path="res://art/player/hand.png" type="Texture" id=4]
+[ext_resource path="res://art/player/arm.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
+radius = 32.0
+height = 92.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 24.8944
+
+[sub_resource type="CapsuleShape2D" id=3]
 radius = 12.0
 height = 120.0
 
@@ -54,12 +58,23 @@ rotation = -0.511169
 [node name="RigidBody2D" type="RigidBody2D" parent="Body"]
 mode = 3
 
+[node name="BodyShape2D" type="CollisionShape2D" parent="Body/RigidBody2D"]
+shape = SubResource( 1 )
+
 [node name="HeadShape2D" type="CollisionShape2D" parent="Body/RigidBody2D"]
 position = Vector2( -3.15049, -100.669 )
-shape = SubResource( 3 )
-
-[node name="BodyShape2D" type="CollisionShape2D" parent="Body/RigidBody2D"]
 shape = SubResource( 2 )
+
+[node name="body" type="Sprite" parent="Body/RigidBody2D"]
+modulate = Color( 0.435294, 0.239216, 0.501961, 1 )
+scale = Vector2( 0.5, 0.422976 )
+texture = ExtResource( 3 )
+
+[node name="head" type="Sprite" parent="Body/RigidBody2D"]
+modulate = Color( 0.788235, 0.678431, 0.85098, 1 )
+position = Vector2( -3.15049, -100.669 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
 
 [node name="Platform" type="Node2D" parent="."]
 position = Vector2( 0, 10.803 )
@@ -72,7 +87,18 @@ mode = 3
 continuous_cd = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/RigidBody2D"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
+
+[node name="arm" type="Sprite" parent="Platform/RigidBody2D"]
+modulate = Color( 0.3306, 0.1824, 0.38, 1 )
+scale = Vector2( 0.5, 0.603562 )
+texture = ExtResource( 5 )
+
+[node name="hand" type="Sprite" parent="Platform/RigidBody2D"]
+modulate = Color( 0.788235, 0.678431, 0.85098, 1 )
+position = Vector2( 0, 65.2 )
+scale = Vector2( -0.5, -0.5 )
+texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Reset"

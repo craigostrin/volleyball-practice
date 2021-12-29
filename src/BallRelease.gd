@@ -10,9 +10,11 @@ func _ready() -> void:
 
 
 func reset() -> void:
+	show()
 	collider.set_deferred("disabled", false)
 	timer.start()
 
 
 func _on_Timer_timeout() -> void:
 	collider.set_deferred("disabled", true)
+	hide()

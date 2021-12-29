@@ -1,9 +1,8 @@
 extends RigidBody2D
 
+signal hit_platform
+signal hit_wall
 signal stuck_on_floor
-
-var is_on_floor := false
-var floortestind := 0
 
 onready var vis_notifier: VisibilityNotifier2D = $VisibilityNotifier2D
 onready var offscreen_indicator: Node2D = $OffscreenIndicator
@@ -36,7 +35,8 @@ func screen_entered_exited(has_entered: bool) -> void:
 
 
 func _on_RigidBall_body_entered(body: Node) -> void:
-	pass
+	if body.is_in_group("wall"):
+		emit_signal("hit_wall")
 
 
 func _on_FloorDetector_body_entered_exited(body: Node, has_entered: bool) -> void:
@@ -51,4 +51,3 @@ func _on_FloorDetector_body_entered_exited(body: Node, has_entered: bool) -> voi
 
 func _on_FloorTimer_timeout() -> void:
 	emit_signal("stuck_on_floor")
-	print("im stuck")

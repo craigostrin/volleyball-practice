@@ -1,18 +1,69 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Ball/RigidBall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Game.gd" type="Script" id=3]
 [ext_resource path="res://src/BallRelease.gd" type="Script" id=4]
+[ext_resource path="res://art/blank_rect.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 40, 10 )
+extents = Vector2( 595, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 595, 10 )
+extents = Vector2( 40, 10 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="Environment"]
+position = Vector2( 488, 591 )
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Floor"]
+shape = SubResource( 1 )
+
+[node name="grass" type="Sprite" parent="Environment/Floor"]
+modulate = Color( 0.243137, 0.545098, 0.121569, 1 )
+position = Vector2( 0, 4.99998 )
+scale = Vector2( 11.8931, 0.750001 )
+texture = ExtResource( 5 )
+
+[node name="Wall" type="StaticBody2D" parent="Environment" groups=[
+"wall",
+]]
+position = Vector2( 1.61438, 61.6999 )
+rotation = 1.5708
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall"]
+shape = SubResource( 1 )
+
+[node name="wall" type="Sprite" parent="Environment/Wall"]
+modulate = Color( 0.180392, 0.0431373, 0.0431373, 1 )
+position = Vector2( 232.193, 4.99633 )
+scale = Vector2( 7.00304, 0.750183 )
+texture = ExtResource( 5 )
+
+[node name="Wall2" type="StaticBody2D" parent="Environment" groups=[
+"wall",
+]]
+position = Vector2( 1023.14, 70.8032 )
+rotation = 1.5708
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall2"]
+shape = SubResource( 1 )
+
+[node name="wall2" type="Sprite" parent="Environment/Wall2"]
+modulate = Color( 0.180392, 0.0431373, 0.0431373, 1 )
+position = Vector2( 232, 1.307 )
+scale = Vector2( 7.00304, 0.750183 )
+texture = ExtResource( 5 )
 
 [node name="BallSpawn" type="Position2D" parent="."]
 position = Vector2( 212, 194 )
@@ -23,8 +74,14 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource( 4 )
 
+[node name="rect" type="Sprite" parent="BallSpawn/BallRelease"]
+modulate = Color( 0.262745, 0.709804, 0.929412, 1 )
+position = Vector2( -1.31726e-05, -0.0549908 )
+scale = Vector2( 0.8, 0.5 )
+texture = ExtResource( 5 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallSpawn/BallRelease"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="BallSpawn/BallRelease"]
 wait_time = 3.0
@@ -35,31 +92,12 @@ autostart = true
 position = Vector2( 212, 194 )
 mass = 20.0
 
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2( 488, 591 )
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource( 2 )
-
-[node name="Wall" type="StaticBody2D" parent="."]
-position = Vector2( 1.61438, 61.6999 )
-rotation = 1.5708
-collision_layer = 4
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-shape = SubResource( 2 )
-
-[node name="Wall2" type="StaticBody2D" parent="."]
-position = Vector2( 1023.14, 70.8032 )
-rotation = 1.5708
-collision_layer = 4
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
-shape = SubResource( 2 )
-
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 324.826, 407.573 )
+
+[node name="Player2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 833, 407.573 )
+move_left_action = "move_left2"
+move_right_action = "move_right2"
+pass_action = "pass2"
+flip_action = "flip2"
