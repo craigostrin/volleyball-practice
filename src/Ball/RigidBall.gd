@@ -1,9 +1,14 @@
 extends RigidBody2D
 
-signal hit_platform
-signal hit_wall
+signal hit(what)
 signal stuck_on_floor
 
+# used to cancel out `hit` signals while on floor to prevent hit-counter cheating
+var is_on_floor := false
+
+enum SoundType { LIGHT, NORMAL, HEAVY }
+
+onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 onready var vis_notifier: VisibilityNotifier2D = $VisibilityNotifier2D
 onready var offscreen_indicator: Node2D = $OffscreenIndicator
 onready var ftimer: Timer = $FloorDetector/FloorTimer
@@ -35,16 +40,30 @@ func screen_entered_exited(has_entered: bool) -> void:
 
 
 func _on_RigidBall_body_entered(body: Node) -> void:
+	var hit_what := ""
+	
 	if body.is_in_group("wall"):
-		emit_signal("hit_wall")
+		hit_what = "wall"
+		audio_player.play_bump(SoundType.LIGHT)
+	elif body.is_in_group("platform"):
+		hit_what = "platform"
+		audio_player.play_bump(SoundType.NORMAL)
+	
+	# floor sound is handled by `_on_FloorDetector` so it doesn't spam while rolling
+	
+	if not hit_what == "" and not is_on_floor:
+		emit_signal("hit", hit_what)
+	#prints(hit_what,": ", linear_velocity.length_squared())
 
 
 func _on_FloorDetector_body_entered_exited(body: Node, has_entered: bool) -> void:
 	if not body.name == "Floor":
 		return
 	
+	is_on_floor = has_entered
 	if has_entered:
 		ftimer.start()
+		audio_player.play_bump(SoundType.NORMAL)
 	else:
 		ftimer.stop()
 

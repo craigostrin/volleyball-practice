@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/normal3_bump8.wav-1c09cb3c42ab534aa8a2d91a812cb63e.sample"
+
+[deps]
+
+source_file="res://sound/normal3_bump8.wav"
+dest_files=[ "res://.import/normal3_bump8.wav-1c09cb3c42ab534aa8a2d91a812cb63e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/light1_bump9.wav-66d8c1e3c6380a0a732d015eed762d74.sample"
+
+[deps]
+
+source_file="res://sound/light1_bump9.wav"
+dest_files=[ "res://.import/light1_bump9.wav-66d8c1e3c6380a0a732d015eed762d74.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

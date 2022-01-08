@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://art/ball_indic.svg" type="Texture" id=1]
 [ext_resource path="res://art/volleyball_small_resize.png" type="Texture" id=2]
 [ext_resource path="res://src/Ball/RigidBall.gd" type="Script" id=3]
+[ext_resource path="res://src/Ball/AudioStreamPlayer.gd" type="Script" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.5
@@ -58,3 +59,6 @@ shape = SubResource( 3 )
 [node name="FloorTimer" type="Timer" parent="FloorDetector"]
 wait_time = 3.0
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 5 )

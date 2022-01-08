@@ -79,7 +79,9 @@ texture = ExtResource( 2 )
 [node name="Platform" type="Node2D" parent="."]
 position = Vector2( 0, 10.803 )
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Platform"]
+[node name="RigidBody2D" type="RigidBody2D" parent="Platform" groups=[
+"platform",
+]]
 position = Vector2( -17.8299, 60.0858 )
 rotation = 0.299278
 collision_mask = 6

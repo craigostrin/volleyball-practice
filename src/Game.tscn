@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/Ball/RigidBall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Game.gd" type="Script" id=3]
 [ext_resource path="res://src/BallRelease.gd" type="Script" id=4]
 [ext_resource path="res://art/blank_rect.png" type="Texture" id=5]
+[ext_resource path="res://src/UI.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 595, 10 )
@@ -68,13 +68,15 @@ texture = ExtResource( 5 )
 [node name="BallSpawn" type="Position2D" parent="."]
 position = Vector2( 212, 194 )
 
-[node name="BallRelease" type="StaticBody2D" parent="BallSpawn"]
+[node name="BallRelease" type="StaticBody2D" parent="BallSpawn" groups=[
+"no_sound",
+]]
 position = Vector2( 0, 38.055 )
 collision_layer = 4
 collision_mask = 2
 script = ExtResource( 4 )
 
-[node name="rect" type="Sprite" parent="BallSpawn/BallRelease"]
+[node name="Sprite" type="Sprite" parent="BallSpawn/BallRelease"]
 modulate = Color( 0.262745, 0.709804, 0.929412, 1 )
 position = Vector2( -1.31726e-05, -0.0549908 )
 scale = Vector2( 0.8, 0.5 )
@@ -88,16 +90,147 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="RigidBall" parent="." instance=ExtResource( 1 )]
-position = Vector2( 212, 194 )
-mass = 20.0
-
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 324.826, 407.573 )
 
-[node name="Player2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 833, 407.573 )
-move_left_action = "move_left2"
-move_right_action = "move_right2"
-pass_action = "pass2"
-flip_action = "flip2"
+[node name="UI" type="CanvasLayer" parent="."]
+layer = -1
+script = ExtResource( 6 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -142.0
+margin_right = 142.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 132, 99 )
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlatformPanel" type="Panel" parent="UI/HBoxContainer"]
+margin_right = 132.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 132, 99 )
+size_flags_horizontal = 6
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="UI/HBoxContainer/PlatformPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 5.0
+margin_right = -20.0
+margin_bottom = -5.0
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="UI/HBoxContainer/PlatformPanel/VBox"]
+margin_top = 6.0
+margin_right = 92.0
+margin_bottom = 20.0
+text = "Platform"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="UI/HBoxContainer/PlatformPanel/VBox"]
+margin_top = 24.0
+margin_right = 92.0
+margin_bottom = 28.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HitsLabel" type="Label" parent="UI/HBoxContainer/PlatformPanel/VBox"]
+margin_top = 32.0
+margin_right = 92.0
+margin_bottom = 46.0
+text = "Hits: 000"
+valign = 1
+
+[node name="LastLabel" type="Label" parent="UI/HBoxContainer/PlatformPanel/VBox"]
+margin_top = 50.0
+margin_right = 92.0
+margin_bottom = 64.0
+text = "Last: 000"
+valign = 1
+
+[node name="BestLabel" type="Label" parent="UI/HBoxContainer/PlatformPanel/VBox"]
+margin_top = 68.0
+margin_right = 92.0
+margin_bottom = 82.0
+text = "Best: 000"
+valign = 1
+
+[node name="WallPanel" type="Panel" parent="UI/HBoxContainer"]
+margin_left = 152.0
+margin_right = 284.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 132, 99 )
+size_flags_horizontal = 6
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="UI/HBoxContainer/WallPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 5.0
+margin_right = -20.0
+margin_bottom = -5.0
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="UI/HBoxContainer/WallPanel/VBox"]
+margin_top = 6.0
+margin_right = 92.0
+margin_bottom = 20.0
+text = "Wall"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="UI/HBoxContainer/WallPanel/VBox"]
+margin_top = 24.0
+margin_right = 92.0
+margin_bottom = 28.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HitsLabel" type="Label" parent="UI/HBoxContainer/WallPanel/VBox"]
+margin_top = 32.0
+margin_right = 92.0
+margin_bottom = 46.0
+text = "Hits: 000"
+valign = 1
+
+[node name="LastLabel" type="Label" parent="UI/HBoxContainer/WallPanel/VBox"]
+margin_top = 50.0
+margin_right = 92.0
+margin_bottom = 64.0
+text = "Last: 000"
+valign = 1
+
+[node name="BestLabel" type="Label" parent="UI/HBoxContainer/WallPanel/VBox"]
+margin_top = 68.0
+margin_right = 92.0
+margin_bottom = 82.0
+text = "Best: 000"
+valign = 1

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/heavy1_bump6.wav-e7d2772e93730a5b6a2a2cd96b26aacd.sample"
+
+[deps]
+
+source_file="res://sound/heavy1_bump6.wav"
+dest_files=[ "res://.import/heavy1_bump6.wav-e7d2772e93730a5b6a2a2cd96b26aacd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0
