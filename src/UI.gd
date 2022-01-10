@@ -51,6 +51,10 @@ func full_reset() -> void:
 	self._wall_best = 0
 
 
+func show_hide_pause(show: bool) -> void:
+	$PausePanel.visible = show
+
+
 # SETTERS
 func set_platform_hits(val: int) -> void:
 	_platform_hits = val

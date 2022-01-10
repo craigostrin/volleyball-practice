@@ -1,31 +1,54 @@
 extends RigidBody2D
 
+# default settings: mass 30, grav scale 10
+
 signal hit(what)
 signal stuck_on_floor
 
+export var balloon_mode := false
+const BALLOON_MASS = 5
+const BALLOON_GRAV_SCALE = 5
+const MASS = 30
+const GRAV_SCALE = 10
+
+var radius: float
 # used to cancel out `hit` signals while on floor to prevent hit-counter cheating
 var is_on_floor := false
 
 enum SoundType { LIGHT, NORMAL, HEAVY }
 
 onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
-onready var vis_notifier: VisibilityNotifier2D = $VisibilityNotifier2D
 onready var offscreen_indicator: Node2D = $OffscreenIndicator
 onready var ftimer: Timer = $FloorDetector/FloorTimer
 
 
 func _ready() -> void:
-	vis_notifier.connect("screen_entered", self, "screen_entered_exited", [true])
-	vis_notifier.connect("screen_exited", self, "screen_entered_exited", [false])
 	offscreen_indicator.hide()
 	
+# warning-ignore:return_value_discarded
 	connect("body_entered", self, "_on_RigidBall_body_entered")
+# warning-ignore:return_value_discarded
 	$FloorDetector.connect("body_entered", self, "_on_FloorDetector_body_entered_exited", [true])
+# warning-ignore:return_value_discarded
 	$FloorDetector.connect("body_exited", self, "_on_FloorDetector_body_entered_exited", [false])
+# warning-ignore:return_value_discarded
 	ftimer.connect("timeout", self, "_on_FloorTimer_timeout")
+	
+	radius = $CollisionShape2D.shape.radius
+	
+	if balloon_mode:
+		mass = BALLOON_MASS
+		gravity_scale = BALLOON_GRAV_SCALE
+	else:
+		mass = MASS
+		gravity_scale = GRAV_SCALE
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	position.x = clamp(position.x, 0, get_viewport_rect().size.x)
+	
+	var is_offscreen := position.y < -radius
+	offscreen_indicator.visible = is_offscreen
 	move_offscreen_indicator()
 
 
@@ -33,10 +56,8 @@ func move_offscreen_indicator() -> void:
 	offscreen_indicator.rotation_degrees = -rotation_degrees
 	offscreen_indicator.global_position.y = 0
 	offscreen_indicator.global_position.x = position.x
-
-
-func screen_entered_exited(has_entered: bool) -> void:
-	offscreen_indicator.visible = !has_entered
+	# scale offscreen_indicator based on distance from top of viewport
+	# fuckin.. math
 
 
 func _on_RigidBall_body_entered(body: Node) -> void:
@@ -48,6 +69,7 @@ func _on_RigidBall_body_entered(body: Node) -> void:
 	elif body.is_in_group("platform"):
 		hit_what = "platform"
 		audio_player.play_bump(SoundType.NORMAL)
+		# if velocity > 1000(?), play HEAVY (and if player is moving forward..?)
 	
 	# floor sound is handled by `_on_FloorDetector` so it doesn't spam while rolling
 	

@@ -13,6 +13,7 @@ extents = Vector2( 595, 10 )
 extents = Vector2( 40, 10 )
 
 [node name="Game" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 3 )
 
 [node name="Environment" type="Node2D" parent="."]
@@ -66,6 +67,7 @@ scale = Vector2( 7.00304, 0.750183 )
 texture = ExtResource( 5 )
 
 [node name="BallSpawn" type="Position2D" parent="."]
+pause_mode = 1
 position = Vector2( 212, 194 )
 
 [node name="BallRelease" type="StaticBody2D" parent="BallSpawn" groups=[
@@ -91,13 +93,15 @@ one_shot = true
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 324.826, 407.573 )
+pause_mode = 1
+position = Vector2( 325, 407.5 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = -1
 script = ExtResource( 6 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+pause_mode = 1
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -142.0
@@ -234,3 +238,28 @@ margin_right = 92.0
 margin_bottom = 82.0
 text = "Best: 000"
 valign = 1
+
+[node name="PausePanel" type="Panel" parent="UI"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.666667 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -83.0
+margin_top = -20.0
+margin_right = 83.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/PausePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "PAUSED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
