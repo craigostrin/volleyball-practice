@@ -263,3 +263,49 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TargetPanel" type="Panel" parent="UI"]
+margin_left = 78.0
+margin_right = 162.0
+margin_bottom = 79.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TargetPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="UI/TargetPanel/VBoxContainer"]
+margin_top = 9.0
+margin_right = 64.0
+margin_bottom = 23.0
+text = "Targets"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="UI/TargetPanel/VBoxContainer"]
+margin_top = 27.0
+margin_right = 64.0
+margin_bottom = 31.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HitsLabel" type="Label" parent="UI/TargetPanel/VBoxContainer"]
+margin_top = 35.0
+margin_right = 64.0
+margin_bottom = 49.0
+text = "000"
+align = 1
+valign = 1

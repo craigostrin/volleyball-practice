@@ -8,6 +8,8 @@ var _wall_hits := 0 setget set_wall_hits
 var _wall_last := 0 setget set_wall_last
 var _wall_best := 0 setget set_wall_best
 
+var _target_hits := 0 setget set_target_hits
+
 onready var platform_hits_label: Label = $HBoxContainer/PlatformPanel/VBox/HitsLabel
 onready var platform_last_label: Label = $HBoxContainer/PlatformPanel/VBox/LastLabel
 onready var platform_best_label: Label = $HBoxContainer/PlatformPanel/VBox/BestLabel
@@ -15,6 +17,8 @@ onready var platform_best_label: Label = $HBoxContainer/PlatformPanel/VBox/BestL
 onready var wall_hits_label: Label = $HBoxContainer/WallPanel/VBox/HitsLabel
 onready var wall_last_label: Label = $HBoxContainer/WallPanel/VBox/LastLabel
 onready var wall_best_label: Label = $HBoxContainer/WallPanel/VBox/BestLabel
+
+onready var target_hits_label: Label = $TargetPanel/VBoxContainer/HitsLabel
 
 
 func _ready() -> void:
@@ -27,6 +31,9 @@ func add_platform_hit() -> void:
 
 func add_wall_hit() -> void:
 	self._wall_hits += 1
+
+func add_target_hit() -> void:
+	self._target_hits += 1
 
 
 # RESETS
@@ -49,6 +56,7 @@ func full_reset() -> void:
 	self._wall_hits = 0
 	self._wall_last = 0
 	self._wall_best = 0
+	self._target_hits = 0
 
 
 func show_hide_pause(show: bool) -> void:
@@ -80,3 +88,9 @@ func set_wall_last(val: int) -> void:
 func set_wall_best(val: int) -> void:
 	_wall_best = val
 	wall_best_label.text = "Best: " + str(_wall_best)
+
+
+func set_target_hits(val: int) -> void:
+	_target_hits = val
+	target_hits_label.text = str(_target_hits)
+	

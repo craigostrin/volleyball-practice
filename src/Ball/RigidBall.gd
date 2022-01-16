@@ -62,20 +62,30 @@ func move_offscreen_indicator() -> void:
 
 func _on_RigidBall_body_entered(body: Node) -> void:
 	var hit_what := ""
+	var sound_type := -1
 	
 	if body.is_in_group("wall"):
 		hit_what = "wall"
-		audio_player.play_bump(SoundType.LIGHT)
+		sound_type = SoundType.LIGHT
 	elif body.is_in_group("platform"):
 		hit_what = "platform"
-		audio_player.play_bump(SoundType.NORMAL)
-		# if velocity > 1000(?), play HEAVY (and if player is moving forward..?)
+		sound_type = SoundType.NORMAL
+		if linear_velocity.length_squared() >= 1200 * 1200: # 1200 velocity (1250? 1300?)
+			sound_type = SoundType.HEAVY
+			print("HEAVY")
+			# only if player is moving forward? (would probably need to move 
+			# sfx to the object being hit)
+	elif body is Target:
+		hit_what = "target"
+		body.hit()
 	
 	# floor sound is handled by `_on_FloorDetector` so it doesn't spam while rolling
+	if sound_type >= 0 and sound_type < SoundType.size():
+		audio_player.play_bump(sound_type)
 	
 	if not hit_what == "" and not is_on_floor:
 		emit_signal("hit", hit_what)
-	#prints(hit_what,": ", linear_velocity.length_squared())
+		prints(hit_what,": ", linear_velocity.length())
 
 
 func _on_FloorDetector_body_entered_exited(body: Node, has_entered: bool) -> void:

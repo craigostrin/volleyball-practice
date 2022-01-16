@@ -1,28 +1,28 @@
 extends Node2D
 ### TO DO ###
-# play: crouch
+
+# WHY IS IT SPAWNING TWO OVERLAPPING TARGETS SOMETIMES
 
 # play/UI: challenges, special moves, score?
 ## like, bounce ball off head and then hit wall
 ## bump ball twice w/o hitting wall, then hit wall on 3rd bump
-
+## targets + target manager
 
 # input remapping
-
-# sound: make it based on Ball velocity, set up floor
-# sound: arms swinging? :/
 
 # UI options
 # hit tracker (both wall + platform are optional. default: off)
 
 # OPTIONAL
-# ball's offscreen indicator gets smaller as the ball gets further away
+# UI: ball's offscreen indicator gets smaller as the ball gets further away
+# sound: arms swinging? :/
 
 # possibly v1.5
 # 2.0: 2 player mode!
 
 
 const ball_scene := preload("res://src/Ball/RigidBall.tscn")
+const target_scene := preload("res://src/Target.tscn")
 
 var ball: RigidBody2D
 
@@ -33,6 +33,7 @@ onready var ball_release: StaticBody2D = $BallSpawn/BallRelease
 
 func _ready() -> void:
 	ball = spawn_ball()
+	spawn_target()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -71,3 +72,15 @@ func _on_ball_hit(hit_what: String) -> void:
 		ui.add_wall_hit()
 	if hit_what == "platform":
 		ui.add_platform_hit()
+	if hit_what == "target":
+		ui.add_target_hit()
+		spawn_target()
+
+
+func spawn_target() -> void:
+	var t: Target = target_scene.instance()
+	var rpos := Vector2(35, (randi() % 300) + 35)
+	t.connect("hit", self, "_on_ball_hit", ["target"])
+	add_child(t)
+	t.position = rpos
+	print(name + " spawned")
