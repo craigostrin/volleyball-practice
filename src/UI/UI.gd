@@ -47,6 +47,8 @@ func new_ball() -> void:
 	self._wall_hits = 0
 	if _wall_last > _wall_best:
 		self._wall_best = _wall_last
+	
+	self._target_hits = 0
 
 
 func full_reset() -> void:

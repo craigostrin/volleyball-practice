@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	var move_vec := get_movement()
 	if move_vec != Vector2.ZERO:
 		position += move_vec * speed * delta
-		position.x = clamp(position.x, -100, get_viewport_rect().size.x + 100)
+		position.x = clamp(position.x, -25, get_viewport_rect().size.x + 25)
 
 
 func get_movement() -> Vector2:

@@ -3,6 +3,7 @@ extends RigidBody2D
 # default settings: mass 30, grav scale 10
 
 signal hit(what)
+signal touched_player
 signal stuck_on_floor
 
 export var balloon_mode := false
@@ -25,13 +26,13 @@ onready var ftimer: Timer = $FloorDetector/FloorTimer
 func _ready() -> void:
 	offscreen_indicator.hide()
 	
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	connect("body_entered", self, "_on_RigidBall_body_entered")
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	$FloorDetector.connect("body_entered", self, "_on_FloorDetector_body_entered_exited", [true])
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	$FloorDetector.connect("body_exited", self, "_on_FloorDetector_body_entered_exited", [false])
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	ftimer.connect("timeout", self, "_on_FloorTimer_timeout")
 	
 	radius = $CollisionShape2D.shape.radius
@@ -50,6 +51,9 @@ func _physics_process(_delta: float) -> void:
 	var is_offscreen := position.y < -radius
 	offscreen_indicator.visible = is_offscreen
 	move_offscreen_indicator()
+	# DEBUG
+	if Input.is_action_pressed("left_mouse_debug"):
+		position = get_global_mouse_position()
 
 
 func move_offscreen_indicator() -> void:
@@ -64,6 +68,9 @@ func _on_RigidBall_body_entered(body: Node) -> void:
 	var hit_what := ""
 	var sound_type := -1
 	
+	if body.is_in_group("player"):
+		emit_signal("touched_player")
+	
 	if body.is_in_group("wall"):
 		hit_what = "wall"
 		sound_type = SoundType.LIGHT
@@ -75,9 +82,6 @@ func _on_RigidBall_body_entered(body: Node) -> void:
 			print("HEAVY")
 			# only if player is moving forward? (would probably need to move 
 			# sfx to the object being hit)
-	elif body is Target:
-		hit_what = "target"
-		body.hit()
 	
 	# floor sound is handled by `_on_FloorDetector` so it doesn't spam while rolling
 	if sound_type >= 0 and sound_type < SoundType.size():
@@ -85,7 +89,7 @@ func _on_RigidBall_body_entered(body: Node) -> void:
 	
 	if not hit_what == "" and not is_on_floor:
 		emit_signal("hit", hit_what)
-		prints(hit_what,": ", linear_velocity.length())
+		#prints(hit_what,": ", linear_velocity.length())
 
 
 func _on_FloorDetector_body_entered_exited(body: Node, has_entered: bool) -> void:
