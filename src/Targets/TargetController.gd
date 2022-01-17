@@ -1,5 +1,7 @@
 extends Node2D
 
+signal target_hit
+
 const target_scene := preload("res://src/Targets/Target.tscn")
 var rng := RandomNumberGenerator.new()
 var screen_width: float
@@ -12,7 +14,7 @@ export var wall_vertical_range := 300
 export var center_vertical_range := 230
 
 enum TargetArea { LEFT_WALL, CENTER, RIGHT_WALL }
-export(TargetArea) var spawn_targets_where := TargetArea.LEFT_WALL
+export(TargetArea) var target_area := TargetArea.LEFT_WALL
 var is_next_target_hittable := false
 
 onready var spawn_timer: Timer = $SpawnTimer
@@ -21,7 +23,7 @@ onready var spawn_timer: Timer = $SpawnTimer
 func _ready() -> void:
 	rng.randomize()
 	screen_width = get_viewport_rect().size.x
-	target = spawn_target(spawn_targets_where)
+	target = spawn_target(target_area)
 
 
 func spawn_target(target_area) -> Target:
@@ -54,10 +56,10 @@ func get_random_target_area() -> int:
 
 func _on_target_hit() -> void:
 	is_next_target_hittable = false
-	owner.ui.add_target_hit()
+	emit_signal("target_hit")
 	spawn_timer.start()
 	yield(spawn_timer, "timeout")
-	target = spawn_target(spawn_targets_where)
+	target = spawn_target(target_area)
 
 
 # Called by Game when the ball touches any part of the player

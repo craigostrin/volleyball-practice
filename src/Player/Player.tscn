@@ -139,7 +139,6 @@ texture = ExtResource( 2 )
 
 [node name="Platform" type="Node2D" parent="Body"]
 position = Vector2( 0, 10.803 )
-rotation = 1.15932
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Body/Platform" groups=[
 "platform",

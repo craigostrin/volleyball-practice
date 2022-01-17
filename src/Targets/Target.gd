@@ -19,7 +19,6 @@ func _on_body_entered(_body) -> void:
 	# play animation
 	# play sfx
 	queue_free() # on_animation_finished
-	print(name + " hit")
 	emit_signal("hit")
 
 
@@ -27,6 +26,7 @@ func _on_body_entered(_body) -> void:
 func set_shape(TargetArea: int) -> void:
 	match TargetArea:
 		0: # LEFT
+			# this is the default shape+sprite setup
 			pass
 		1: # CENTER
 			$SpriteWall.hide()
