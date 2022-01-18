@@ -37,6 +37,7 @@ var target_controller: Node2D
 #var rng := RandomNumberGenerator.new()
 
 onready var ui:                       CanvasLayer = $UI
+onready var pause_ui:                 CanvasLayer = $PauseUI
 onready var ball_spawn_pos:           Vector2 = $BallSpawn.position
 onready var ball_release:             StaticBody2D = $BallSpawn/BallRelease
 onready var ball_launcher:            Position2D = $BallLauncher
@@ -46,7 +47,7 @@ onready var wall_hit_count_timer:     Timer = $WallHitCountTimer
 
 func _ready() -> void:
 	if target_mode:
-		target_controller = target_controller_scene.instance()
+		target_controller = target_controller_scene.instance() as Node2D
 		target_controller.connect("target_hit", self, "_on_target_hit")
 		add_child(target_controller)
 	ball = spawn_ball()
@@ -58,7 +59,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		ball = reset_ball()
 	if event.is_action_pressed("pause"):
 		get_tree().paused = !get_tree().paused
-		ui.show_hide_pause(get_tree().paused)
+		pause_ui.show_pause(get_tree().paused)
 
 
 func spawn_ball() -> RigidBody2D:

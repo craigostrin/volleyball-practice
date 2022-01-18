@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://src/UI/PauseUI.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Game.gd" type="Script" id=3]
 [ext_resource path="res://src/BallRelease.gd" type="Script" id=4]
@@ -117,33 +118,9 @@ wait_time = 0.1
 one_shot = true
 
 [node name="UI" type="CanvasLayer" parent="."]
+pause_mode = 2
 layer = -1
 script = ExtResource( 6 )
-
-[node name="PausePanel" type="Panel" parent="UI"]
-visible = false
-self_modulate = Color( 1, 1, 1, 0.666667 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -83.0
-margin_top = -20.0
-margin_right = 83.0
-margin_bottom = 20.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/PausePanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "PAUSED"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 pause_mode = 1
@@ -333,3 +310,110 @@ margin_bottom = 49.0
 text = "000"
 align = 1
 valign = 1
+
+[node name="PauseUI" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="PausePanel" type="Panel" parent="PauseUI"]
+self_modulate = Color( 1, 1, 1, 0.666667 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -97.0
+margin_top = -40.0
+margin_right = 97.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseUI/PausePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseUI/PausePanel/VBoxContainer"]
+margin_right = 174.0
+margin_bottom = 14.0
+text = "PAUSED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="PauseUI/PausePanel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 174.0
+margin_bottom = 22.0
+
+[node name="UISettingsButton" type="Button" parent="PauseUI/PausePanel/VBoxContainer"]
+margin_top = 26.0
+margin_right = 174.0
+margin_bottom = 46.0
+text = "UI Settings"
+
+[node name="UISettingsPanel" type="Panel" parent="PauseUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -187.0
+margin_top = -145.0
+margin_right = 187.0
+margin_bottom = 145.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseUI/UISettingsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+margin_right = 334.0
+margin_bottom = 14.0
+text = "UI Settings"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 334.0
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+margin_top = 26.0
+margin_right = 334.0
+margin_bottom = 50.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/HBoxContainer"]
+margin_left = 92.0
+margin_top = 5.0
+margin_right = 213.0
+margin_bottom = 19.0
+text = "Show Platform Hits"
+
+[node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/HBoxContainer"]
+margin_left = 217.0
+margin_right = 241.0
+margin_bottom = 24.0

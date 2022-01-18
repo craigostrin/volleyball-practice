@@ -12,6 +12,12 @@ const BALLOON_GRAV_SCALE = 5
 const MASS = 30
 const GRAV_SCALE = 10
 
+# for scaling the offscreen indicator
+const DEFAULT_SCALE := Vector2(1.0, 1.0)
+var min_scale_height := -600.0 # DEBUG: change this if screen_height gets larger
+var min_scale := 0.2
+var max_scale := 1.0
+
 var radius: float
 # used to cancel out `hit` signals while on floor to prevent hit-counter cheating
 var is_on_floor := false
@@ -46,22 +52,28 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	# DEBUG
+	if Input.is_action_pressed("left_mouse_debug"):
+		position = get_global_mouse_position()
+	
 	position.x = clamp(position.x, 0, get_viewport_rect().size.x)
 	
 	var is_offscreen := position.y < -radius
 	offscreen_indicator.visible = is_offscreen
 	move_offscreen_indicator()
-	# DEBUG
-	if Input.is_action_pressed("left_mouse_debug"):
-		position = get_global_mouse_position()
 
 
 func move_offscreen_indicator() -> void:
+	# Scale the indicator based on its distance from the viewport
+	var ball_height := position.y
+	var scaler := max_scale - ( ball_height / min_scale_height ) * ( max_scale - min_scale )
+	scaler = clamp(scaler, min_scale, max_scale)
+	scale = DEFAULT_SCALE * scaler
+	
+	# Move the indicator along the top part of the screen
 	offscreen_indicator.rotation_degrees = -rotation_degrees
 	offscreen_indicator.global_position.y = 0
 	offscreen_indicator.global_position.x = position.x
-	# scale offscreen_indicator based on distance from top of viewport
-	# fuckin.. math
 
 
 func _on_RigidBall_body_entered(body: Node) -> void:
