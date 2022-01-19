@@ -16,7 +16,6 @@ extents = Vector2( 40, 10 )
 [node name="Game" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 3 )
-target_mode = true
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -138,6 +137,7 @@ __meta__ = {
 }
 
 [node name="PlatformPanel" type="Panel" parent="UI/HBoxContainer"]
+visible = false
 margin_right = 132.0
 margin_bottom = 99.0
 rect_min_size = Vector2( 132, 99 )
@@ -161,9 +161,9 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="UI/HBoxContainer/PlatformPanel/VBox"]
-margin_top = 15.0
+margin_top = 33.0
 margin_right = 92.0
-margin_bottom = 29.0
+margin_bottom = 47.0
 text = "Platform"
 align = 1
 __meta__ = {
@@ -171,14 +171,15 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="UI/HBoxContainer/PlatformPanel/VBox"]
-margin_top = 33.0
+margin_top = 51.0
 margin_right = 92.0
-margin_bottom = 37.0
+margin_bottom = 55.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HitsLabel" type="Label" parent="UI/HBoxContainer/PlatformPanel/VBox"]
+visible = false
 margin_top = 41.0
 margin_right = 92.0
 margin_bottom = 55.0
@@ -194,15 +195,16 @@ text = "Last: 000"
 valign = 1
 
 [node name="BestLabel" type="Label" parent="UI/HBoxContainer/PlatformPanel/VBox"]
-margin_top = 59.0
+visible = false
+margin_top = 50.0
 margin_right = 92.0
-margin_bottom = 73.0
+margin_bottom = 64.0
 text = "Best: 000"
 valign = 1
 
 [node name="WallPanel" type="Panel" parent="UI/HBoxContainer"]
-margin_left = 152.0
-margin_right = 284.0
+margin_left = 76.0
+margin_right = 208.0
 margin_bottom = 99.0
 rect_min_size = Vector2( 132, 99 )
 size_flags_horizontal = 6
@@ -369,14 +371,15 @@ margin_bottom = 70.0
 text = "Controls"
 
 [node name="UISettingsPanel" type="Panel" parent="PauseUI"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -143.0
-margin_top = -145.0
-margin_right = 143.0
-margin_bottom = 90.0
+margin_left = -162.0
+margin_top = -155.0
+margin_right = 162.0
+margin_bottom = 110.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -393,7 +396,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer"]
-margin_right = 246.0
+margin_right = 284.0
 margin_bottom = 14.0
 text = "UI Settings"
 align = 1
@@ -401,7 +404,7 @@ valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="PauseUI/UISettingsPanel/VBoxContainer"]
 margin_top = 18.0
-margin_right = 246.0
+margin_right = 284.0
 margin_bottom = 22.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -409,110 +412,208 @@ __meta__ = {
 
 [node name="PlatformHits" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
 margin_top = 26.0
-margin_right = 246.0
+margin_right = 284.0
 margin_bottom = 50.0
 alignment = 1
 
 [node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformHits"]
-margin_left = 48.0
+margin_left = 67.0
 margin_top = 5.0
-margin_right = 169.0
+margin_right = 188.0
 margin_bottom = 19.0
 text = "Show Platform Hits"
 
 [node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformHits"]
-margin_left = 173.0
-margin_right = 197.0
+margin_left = 192.0
+margin_right = 216.0
 margin_bottom = 24.0
 
 [node name="PlatformLast" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
 margin_top = 54.0
-margin_right = 246.0
+margin_right = 284.0
 margin_bottom = 78.0
 alignment = 1
 
 [node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformLast"]
-margin_left = 48.0
+margin_left = 67.0
 margin_top = 5.0
-margin_right = 169.0
+margin_right = 188.0
 margin_bottom = 19.0
 text = "Show Platform Last"
 
 [node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformLast"]
-margin_left = 173.0
-margin_right = 197.0
+margin_left = 192.0
+margin_right = 216.0
 margin_bottom = 24.0
 
 [node name="PlatformBest" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
 margin_top = 82.0
-margin_right = 246.0
+margin_right = 284.0
 margin_bottom = 106.0
 alignment = 1
 
 [node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformBest"]
-margin_left = 47.0
+margin_left = 66.0
 margin_top = 5.0
-margin_right = 171.0
+margin_right = 190.0
 margin_bottom = 19.0
 text = "Show Platform Best"
 
 [node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformBest"]
-margin_left = 175.0
-margin_right = 199.0
+margin_left = 194.0
+margin_right = 218.0
 margin_bottom = 24.0
 
 [node name="WallHits" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
 margin_top = 110.0
-margin_right = 246.0
+margin_right = 284.0
 margin_bottom = 134.0
 alignment = 1
 
 [node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/WallHits"]
-margin_left = 61.0
+margin_left = 80.0
 margin_top = 5.0
-margin_right = 156.0
+margin_right = 175.0
 margin_bottom = 19.0
 text = "Show Wall Hits"
 
 [node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/WallHits"]
-margin_left = 160.0
-margin_right = 184.0
+margin_left = 179.0
+margin_right = 203.0
 margin_bottom = 24.0
+pressed = true
 
 [node name="WallLast" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
 margin_top = 138.0
-margin_right = 246.0
+margin_right = 284.0
 margin_bottom = 162.0
 alignment = 1
 
 [node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/WallLast"]
-margin_left = 61.0
+margin_left = 80.0
 margin_top = 5.0
-margin_right = 156.0
+margin_right = 175.0
 margin_bottom = 19.0
 text = "Show Wall Last"
 
 [node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/WallLast"]
-margin_left = 160.0
-margin_right = 184.0
+margin_left = 179.0
+margin_right = 203.0
 margin_bottom = 24.0
 
 [node name="WallBest" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
 margin_top = 166.0
-margin_right = 246.0
+margin_right = 284.0
 margin_bottom = 190.0
 alignment = 1
 
 [node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/WallBest"]
-margin_left = 60.0
+margin_left = 79.0
 margin_top = 5.0
-margin_right = 158.0
+margin_right = 177.0
 margin_bottom = 19.0
 text = "Show Wall Best"
 
 [node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/WallBest"]
-margin_left = 162.0
-margin_right = 186.0
+margin_left = 181.0
+margin_right = 205.0
 margin_bottom = 24.0
+pressed = true
 
-[connection signal="toggled" from="PauseUI/UISettingsPanel/VBoxContainer/PlatformLast/CheckBox" to="PauseUI" method="_on_CheckBox_toggled"]
+[node name="HSeparator2" type="HSeparator" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+margin_top = 194.0
+margin_right = 284.0
+margin_bottom = 198.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+margin_top = 202.0
+margin_right = 284.0
+margin_bottom = 233.0
+text = "* The \"Platform\" is the shape your arms make in Volleyball when you bump the ball"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="ControlsPanel" type="Panel" parent="PauseUI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -134.0
+margin_top = -115.0
+margin_right = 134.0
+margin_bottom = 90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseUI/ControlsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseUI/ControlsPanel/VBoxContainer"]
+margin_right = 228.0
+margin_bottom = 14.0
+text = "Controls"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseUI/ControlsPanel/VBoxContainer"]
+margin_top = 34.0
+margin_right = 228.0
+margin_bottom = 167.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseUI/ControlsPanel/VBoxContainer/HBoxContainer"]
+margin_right = 112.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "Move Left:
+Move Right:
+Bump/Pass:
+Crouch:
+Flip Character:
+Reset Ball:
+Pause:
+"
+
+[node name="Label2" type="Label" parent="PauseUI/ControlsPanel/VBoxContainer/HBoxContainer"]
+margin_left = 116.0
+margin_right = 228.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "A
+D
+Spacebar
+Ctrl
+F, Shift
+R, Tilde
+Esc"
+
+[connection signal="toggled" from="PauseUI/UISettingsPanel/VBoxContainer/PlatformHits/CheckBox" to="UI" method="_on_PlatformHitsCheckBox_toggled"]
+[connection signal="toggled" from="PauseUI/UISettingsPanel/VBoxContainer/PlatformLast/CheckBox" to="UI" method="_on_PlatformLastCheckBox_toggled"]
+[connection signal="toggled" from="PauseUI/UISettingsPanel/VBoxContainer/PlatformBest/CheckBox" to="UI" method="_on_PlatformBestCheckBox_toggled"]
+[connection signal="toggled" from="PauseUI/UISettingsPanel/VBoxContainer/WallHits/CheckBox" to="UI" method="_on_WallHitsCheckBox_toggled"]
+[connection signal="toggled" from="PauseUI/UISettingsPanel/VBoxContainer/WallLast/CheckBox" to="UI" method="_on_WallLastCheckBox_toggled"]
+[connection signal="toggled" from="PauseUI/UISettingsPanel/VBoxContainer/WallBest/CheckBox" to="UI" method="_on_WallBestCheckBox_toggled"]

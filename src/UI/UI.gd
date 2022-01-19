@@ -96,3 +96,42 @@ func set_target_hits(val: int) -> void:
 	_target_hits = val
 	target_hits_label.text = str(_target_hits)
 	
+
+# UI visibility settings # DEBUG / PLACEHOLDER messy
+func check_Platform_label_visibility() -> void:
+	if platform_hits_label.visible or platform_last_label.visible or platform_best_label.visible:
+		$HBoxContainer/PlatformPanel.visible = true
+	else:
+		$HBoxContainer/PlatformPanel.visible = false
+
+func check_Wall_label_visibility() -> void:
+	if wall_hits_label.visible or wall_last_label.visible or wall_best_label.visible:
+		$HBoxContainer/WallPanel.visible = true
+	else:
+		$HBoxContainer/WallPanel.visible = false
+
+
+func _on_PlatformHitsCheckBox_toggled(button_pressed: bool) -> void:
+	platform_hits_label.visible = button_pressed
+	check_Platform_label_visibility()
+
+func _on_PlatformLastCheckBox_toggled(button_pressed: bool) -> void:
+	platform_last_label.visible = button_pressed
+	check_Platform_label_visibility()
+
+func _on_PlatformBestCheckBox_toggled(button_pressed: bool) -> void:
+	platform_best_label.visible = button_pressed
+	check_Platform_label_visibility()
+
+
+func _on_WallHitsCheckBox_toggled(button_pressed: bool) -> void:
+	wall_hits_label.visible = button_pressed
+	check_Wall_label_visibility()
+
+func _on_WallLastCheckBox_toggled(button_pressed: bool) -> void:
+	wall_last_label.visible = button_pressed
+	check_Wall_label_visibility()
+
+func _on_WallBestCheckBox_toggled(button_pressed: bool) -> void:
+	wall_best_label.visible = button_pressed
+	check_Wall_label_visibility()

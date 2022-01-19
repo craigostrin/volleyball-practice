@@ -12,14 +12,25 @@ onready var wall_best_button: CheckBox = $UISettingsPanel/VBoxContainer/WallBest
 
 func _ready() -> void:
 	show_pause(false)
+	$UISettingsPanel.hide()
+	# DEBUG
+	$PausePanel/VBoxContainer/UISettingsButton.connect("pressed", self, "_on_UISettingsButton_pressed")
+	$PausePanel/VBoxContainer/ControlsButton.connect("pressed", self, "_onControlsButton_pressed")
+
+# DEBUG
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		$UISettingsPanel.hide()
+		$ControlsPanel.hide()
 
 
 func show_pause(show: bool) -> void:
 	$PausePanel.visible = show
 
 
-func _on_platform_hits():
-	pass
+func _on_UISettingsButton_pressed() -> void:
+	$UISettingsPanel.show()
 
-func _on_CheckBox_toggled(button_pressed: bool) -> void:
-	pass # Replace with function body.
+
+func _onControlsButton_pressed() -> void:
+	$ControlsPanel.show()

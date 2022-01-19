@@ -79,6 +79,9 @@ margin_left = -107.556
 margin_top = -0.0940247
 margin_right = 107.444
 margin_bottom = 189.906
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="ThanksPanel/HBoxContainer"]
 margin_right = 105.0
