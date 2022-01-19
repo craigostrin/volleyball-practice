@@ -50,6 +50,9 @@ func _ready() -> void:
 		target_controller = target_controller_scene.instance() as Node2D
 		target_controller.connect("target_hit", self, "_on_target_hit")
 		add_child(target_controller)
+		ui.show_target_counter(true)
+	else:
+		ui.show_target_counter(false)
 	ball = spawn_ball()
 	#ball = launch_ball()
 

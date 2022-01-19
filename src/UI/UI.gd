@@ -25,6 +25,10 @@ func _ready() -> void:
 	full_reset()
 
 
+func show_target_counter(val: bool) -> void:
+	$TargetPanel.visible = val
+
+
 # INCREASE COUNTERS
 func add_platform_hit() -> void:
 	self._platform_hits += 1

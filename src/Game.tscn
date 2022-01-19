@@ -324,7 +324,7 @@ anchor_bottom = 0.5
 margin_left = -97.0
 margin_top = -40.0
 margin_right = 97.0
-margin_bottom = 40.0
+margin_bottom = 50.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -336,6 +336,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -361,15 +362,21 @@ margin_right = 174.0
 margin_bottom = 46.0
 text = "UI Settings"
 
+[node name="ControlsButton" type="Button" parent="PauseUI/PausePanel/VBoxContainer"]
+margin_top = 50.0
+margin_right = 174.0
+margin_bottom = 70.0
+text = "Controls"
+
 [node name="UISettingsPanel" type="Panel" parent="PauseUI"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -187.0
+margin_left = -143.0
 margin_top = -145.0
-margin_right = 187.0
-margin_bottom = 145.0
+margin_right = 143.0
+margin_bottom = 90.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -386,7 +393,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer"]
-margin_right = 334.0
+margin_right = 246.0
 margin_bottom = 14.0
 text = "UI Settings"
 align = 1
@@ -394,26 +401,118 @@ valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="PauseUI/UISettingsPanel/VBoxContainer"]
 margin_top = 18.0
-margin_right = 334.0
+margin_right = 246.0
 margin_bottom = 22.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+[node name="PlatformHits" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
 margin_top = 26.0
-margin_right = 334.0
+margin_right = 246.0
 margin_bottom = 50.0
 alignment = 1
 
-[node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/HBoxContainer"]
-margin_left = 92.0
+[node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformHits"]
+margin_left = 48.0
 margin_top = 5.0
-margin_right = 213.0
+margin_right = 169.0
 margin_bottom = 19.0
 text = "Show Platform Hits"
 
-[node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/HBoxContainer"]
-margin_left = 217.0
-margin_right = 241.0
+[node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformHits"]
+margin_left = 173.0
+margin_right = 197.0
 margin_bottom = 24.0
+
+[node name="PlatformLast" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+margin_top = 54.0
+margin_right = 246.0
+margin_bottom = 78.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformLast"]
+margin_left = 48.0
+margin_top = 5.0
+margin_right = 169.0
+margin_bottom = 19.0
+text = "Show Platform Last"
+
+[node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformLast"]
+margin_left = 173.0
+margin_right = 197.0
+margin_bottom = 24.0
+
+[node name="PlatformBest" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+margin_top = 82.0
+margin_right = 246.0
+margin_bottom = 106.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformBest"]
+margin_left = 47.0
+margin_top = 5.0
+margin_right = 171.0
+margin_bottom = 19.0
+text = "Show Platform Best"
+
+[node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/PlatformBest"]
+margin_left = 175.0
+margin_right = 199.0
+margin_bottom = 24.0
+
+[node name="WallHits" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+margin_top = 110.0
+margin_right = 246.0
+margin_bottom = 134.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/WallHits"]
+margin_left = 61.0
+margin_top = 5.0
+margin_right = 156.0
+margin_bottom = 19.0
+text = "Show Wall Hits"
+
+[node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/WallHits"]
+margin_left = 160.0
+margin_right = 184.0
+margin_bottom = 24.0
+
+[node name="WallLast" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+margin_top = 138.0
+margin_right = 246.0
+margin_bottom = 162.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/WallLast"]
+margin_left = 61.0
+margin_top = 5.0
+margin_right = 156.0
+margin_bottom = 19.0
+text = "Show Wall Last"
+
+[node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/WallLast"]
+margin_left = 160.0
+margin_right = 184.0
+margin_bottom = 24.0
+
+[node name="WallBest" type="HBoxContainer" parent="PauseUI/UISettingsPanel/VBoxContainer"]
+margin_top = 166.0
+margin_right = 246.0
+margin_bottom = 190.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseUI/UISettingsPanel/VBoxContainer/WallBest"]
+margin_left = 60.0
+margin_top = 5.0
+margin_right = 158.0
+margin_bottom = 19.0
+text = "Show Wall Best"
+
+[node name="CheckBox" type="CheckBox" parent="PauseUI/UISettingsPanel/VBoxContainer/WallBest"]
+margin_left = 162.0
+margin_right = 186.0
+margin_bottom = 24.0
+
+[connection signal="toggled" from="PauseUI/UISettingsPanel/VBoxContainer/PlatformLast/CheckBox" to="PauseUI" method="_on_CheckBox_toggled"]

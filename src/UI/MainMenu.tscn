@@ -1,0 +1,112 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/UI/MainMenu.gd" type="Script" id=1]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -146.0
+margin_top = -97.5
+margin_right = 146.0
+margin_bottom = 97.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -40.0
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FreePlayButton" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 27.0
+margin_right = 212.0
+margin_bottom = 47.0
+text = "Free Play"
+
+[node name="TargetModeButton" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 67.0
+margin_right = 212.0
+margin_bottom = 87.0
+text = "Target Mode"
+
+[node name="ThanksPanel" type="Panel" parent="."]
+margin_left = 29.0
+margin_top = 58.0
+margin_right = 297.0
+margin_bottom = 521.0
+
+[node name="Label" type="Label" parent="ThanksPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 21.0
+margin_right = -10.0
+margin_bottom = -231.0
+text = "Hi friend! Thanks for alpha testing my new game. I hope you enjoy it.
+
+(Sorry for the tiny default font)
+
+Free Play is the intended way to play, but I've also included a Target Mode if you want an explicit challenge.
+
+The controls are listed below, and they're also displayed when you pause the game."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ThanksPanel"]
+anchor_left = 0.517
+anchor_top = 0.538
+anchor_right = 0.517
+anchor_bottom = 0.538
+margin_left = -107.556
+margin_top = -0.0940247
+margin_right = 107.444
+margin_bottom = 189.906
+
+[node name="Label" type="Label" parent="ThanksPanel/HBoxContainer"]
+margin_right = 105.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "Move Left:
+Move Right:
+Bump/Pass:
+Crouch:
+Flip Character:
+Reset Ball:
+Pause:
+"
+
+[node name="Label2" type="Label" parent="ThanksPanel/HBoxContainer"]
+margin_left = 109.0
+margin_right = 215.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "A
+D
+Spacebar
+Ctrl
+F, Shift
+R, Tilde
+Esc"
+
+[connection signal="pressed" from="Panel/VBoxContainer/FreePlayButton" to="." method="_on_FreePlayButton_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/TargetModeButton" to="." method="_on_TargetModeButton_pressed"]
