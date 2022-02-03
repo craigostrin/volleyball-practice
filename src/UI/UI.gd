@@ -9,6 +9,7 @@ var _wall_last := 0 setget set_wall_last
 var _wall_best := 0 setget set_wall_best
 
 var _target_hits := 0 setget set_target_hits
+var _target_best := 0 setget set_target_best
 
 onready var platform_hits_label: Label = $HBoxContainer/PlatformPanel/VBox/HitsLabel
 onready var platform_last_label: Label = $HBoxContainer/PlatformPanel/VBox/LastLabel
@@ -19,6 +20,7 @@ onready var wall_last_label: Label = $HBoxContainer/WallPanel/VBox/LastLabel
 onready var wall_best_label: Label = $HBoxContainer/WallPanel/VBox/BestLabel
 
 onready var target_hits_label: Label = $TargetPanel/VBoxContainer/HitsLabel
+onready var target_best_label: Label = $TargetPanel/VBoxContainer/BestLabel
 
 
 func _ready() -> void:
@@ -52,6 +54,8 @@ func new_ball() -> void:
 	if _wall_last > _wall_best:
 		self._wall_best = _wall_last
 	
+	if _target_hits > _target_best:
+		self._target_best = _target_hits
 	self._target_hits = 0
 
 
@@ -63,6 +67,7 @@ func full_reset() -> void:
 	self._wall_last = 0
 	self._wall_best = 0
 	self._target_hits = 0
+	self._target_best = 0
 
 
 # SETTERS
@@ -94,8 +99,12 @@ func set_wall_best(val: int) -> void:
 
 func set_target_hits(val: int) -> void:
 	_target_hits = val
-	target_hits_label.text = str(_target_hits)
-	
+	target_hits_label.text = "Hits: " + str(_target_hits)
+
+func set_target_best(val: int) -> void:
+	_target_best = val
+	target_best_label.text = "Best: " + str(_target_best)
+
 
 # UI visibility settings # DEBUG / PLACEHOLDER messy
 func check_Platform_label_visibility() -> void:

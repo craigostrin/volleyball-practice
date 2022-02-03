@@ -30,22 +30,26 @@ const ball_scene := preload("res://src/Ball/RigidBall.tscn")
 const target_controller_scene := preload("res://src/Targets/TargetController.tscn")
 
 export var target_mode := false
+export var reset_on_floor := false
 export var ball_launcher_impulse := 600.0
 
 var ball: RigidBody2D
 var target_controller: Node2D
 #var rng := RandomNumberGenerator.new()
 
-onready var ui:                       CanvasLayer = $UI
-onready var pause_ui:                 CanvasLayer = $PauseUI
-onready var ball_spawn_pos:           Vector2 = $BallSpawn.position
-onready var ball_release:             StaticBody2D = $BallSpawn/BallRelease
-onready var ball_launcher:            Position2D = $BallLauncher
-onready var platform_hit_count_timer: Timer = $PlatformHitCountTimer
-onready var wall_hit_count_timer:     Timer = $WallHitCountTimer
+onready var ui:                         CanvasLayer = $UI
+onready var pause_ui:                   CanvasLayer = $PauseUI
+onready var ball_spawn_pos:             Vector2 = $BallSpawn.position
+onready var ball_release:               StaticBody2D = $BallSpawn/BallRelease
+onready var ball_launcher:              Position2D = $BallLauncher
+onready var platform_hit_count_timer:   Timer = $PlatformHitCountTimer
+onready var wall_hit_count_timer:       Timer = $WallHitCountTimer
 
 
 func _ready() -> void:
+	var floor_reset_checkbox: CheckBox = $PauseUI/PausePanel/VBoxContainer/HBoxContainer/FloorResetCheckBox
+	floor_reset_checkbox.connect("toggled", self, "_on_floor_reset_checkbox_toggled")
+	
 	if target_mode:
 		target_controller = target_controller_scene.instance() as Node2D
 		target_controller.connect("target_hit", self, "_on_target_hit")
@@ -92,7 +96,7 @@ func new_ball() -> RigidBody2D:
 
 
 func reset_ball() -> RigidBody2D:
-	if ball:
+	if is_instance_valid(ball):
 		ball.queue_free()
 	ui.new_ball()
 	ball_release.reset()
@@ -105,18 +109,28 @@ func _on_ball_stuck_on_floor() -> void:
 
 
 func _on_ball_hit(hit_what: String) -> void:
+	## Discard multi-hits and add +1 to UI counters
+	## If ball hit floor and `Reset on Floor` is on, reset ball
+	
+	# if hit Wall
 	if hit_what == "wall" and wall_hit_count_timer.is_stopped():
 		ui.add_wall_hit()
 		wall_hit_count_timer.start()
-		prints("wall hit counted:", ui._wall_hits)
+		#prints("wall hit counted:", ui._wall_hits)
 	elif hit_what == "wall" and not wall_hit_count_timer.is_stopped():
 		print("*wall hit DISCARDED")
+	
+	# if hit Platform
 	if hit_what == "platform" and platform_hit_count_timer.is_stopped():
 		ui.add_platform_hit()
 		platform_hit_count_timer.start()
-		prints("platform hit counted:", ui._platform_hits)
+		#prints("platform hit counted:", ui._platform_hits)
 	elif hit_what == "platform" and not platform_hit_count_timer.is_stopped():
 		print("*platform hit DISCARDED")
+	
+	# if hit Floor
+	if hit_what == "floor" and reset_on_floor:
+		ball = reset_ball()
 
 
 func _on_ball_touched_player() -> void:
@@ -127,3 +141,7 @@ func _on_ball_touched_player() -> void:
 
 func _on_target_hit() -> void:
 	ui.add_target_hit()
+
+
+func _on_floor_reset_checkbox_toggled(is_button_pressed: bool) -> void:
+	reset_on_floor = is_button_pressed

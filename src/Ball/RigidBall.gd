@@ -53,8 +53,8 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	# DEBUG
-	if Input.is_action_pressed("left_mouse_debug"):
-		position = get_global_mouse_position()
+#	if Input.is_action_pressed("left_mouse_debug"):
+#		position = get_global_mouse_position()
 	
 	position.x = clamp(position.x, 0, get_viewport_rect().size.x)
 	
@@ -94,18 +94,19 @@ func _on_RigidBall_body_entered(body: Node) -> void:
 			print("HEAVY")
 			# only if player is moving forward? (would probably need to move 
 			# sfx to the object being hit)
+	if not hit_what == "" and not is_on_floor:
+		emit_signal("hit", hit_what)
 	
 	# floor sound is handled by `_on_FloorDetector` so it doesn't spam while rolling
 	if sound_type >= 0 and sound_type < SoundType.size():
 		audio_player.play_bump(sound_type)
 	
-	if not hit_what == "" and not is_on_floor:
-		emit_signal("hit", hit_what)
-		#prints(hit_what,": ", linear_velocity.length())
+	if body.is_in_group("floor"):
+		emit_signal("hit", "floor")
 
 
 func _on_FloorDetector_body_entered_exited(body: Node, has_entered: bool) -> void:
-	if not body.name == "Floor":
+	if not body.is_in_group("floor"):
 		return
 	
 	is_on_floor = has_entered
