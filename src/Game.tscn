@@ -31,7 +31,7 @@ collision_mask = 2
 shape = SubResource( 1 )
 
 [node name="wall" type="Sprite" parent="Environment/LeftWall"]
-modulate = Color( 0.180392, 0.0431373, 0.0431373, 1 )
+modulate = Color( 0.392157, 0.223529, 0.223529, 1 )
 position = Vector2( 232.193, 0.0116762 )
 scale = Vector2( 7, 0.750142 )
 texture = ExtResource( 5 )
@@ -48,7 +48,7 @@ collision_mask = 2
 shape = SubResource( 1 )
 
 [node name="wall2" type="Sprite" parent="Environment/RightWall"]
-modulate = Color( 0.180392, 0.0431373, 0.0431373, 1 )
+modulate = Color( 0.392157, 0.223529, 0.223529, 1 )
 position = Vector2( 232, 0 )
 scale = Vector2( 7, 0.75 )
 texture = ExtResource( 5 )
@@ -122,6 +122,14 @@ one_shot = true
 pause_mode = 2
 layer = -1
 script = ExtResource( 6 )
+
+[node name="Background" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.298039, 0.298039, 0.298039, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 pause_mode = 1

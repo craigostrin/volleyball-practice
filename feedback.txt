@@ -1,3 +1,23 @@
+REDDIT:
+
+make arrow keys also default movement
+try S for crouch
+make an easy mode with a dash or sprint (limited use, stamina)
+
+mayyyybe play around with arm strength - "instead of space just pushing the arm upwards, more like the real game so you hold it to accumulate energy and you release that energy"
+ - the longer you hold it, the faster the swing?
+ - holding it makes you stand still?
+
+play around with physics, ball should bounce more, gravity should be higher
+ - "speeding up the game would make it more addicting"
+ - bounce off the floor doesn't matter as much (maybe cuz it's grass)
+platform should reset faster
+* character should reset when ball resets
+
+add a ball spawn on the right side
+
+
+
 RICHARD
 controls:
 all on one hand is awkward
@@ -15,3 +35,18 @@ RICH
 would use crouch to hit the ball up high
 
 manual button to make the ball drop
+
+redditors who gave me feedback
+Besties:
+- Hawkshire, this guy made my fucking day ++++
+- goofyahead, short but very valuable feedback +
+- pachow, also made my day ++
+Cool guys:
+- SoccerBoyJunior
+- princekamoro
+- venyz
+- chucklingmoose
+- albertbolt
+Only if I add everyone:
+- MyBday3mNew
+- thomasdoesclothing

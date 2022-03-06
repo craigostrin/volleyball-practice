@@ -68,34 +68,34 @@ __meta__ = {
 }
 
 [node name="Label" type="RichTextLabel" parent="ThanksPanel/VBoxContainer"]
-margin_top = 30.0
+margin_top = 37.0
 margin_right = 270.0
-margin_bottom = 270.0
+margin_bottom = 262.0
 bbcode_enabled = true
-bbcode_text = "Hi friend! Thanks for alpha testing my new game. I hope you enjoy it.
+bbcode_text = "[center][color=red]READ THIS FIRST[/color][/center]
 
-(Sorry for the tiny default font)
+Hi friend! Thanks for testing my new game. I hope you enjoy it.
 
 Free Play is the intended way to play, but I've also included a Target Mode if you want an explicit challenge.
 
-I'd appreciate it if you would [color=lime]try out Free Play first and give me your feedback on the basic experience BEFORE you try Target Mode[/color].
+I'd appreciate if you would [color=lime]give me your feedback on Free Play BEFORE trying Target Mode.[/color]
 
 The controls are listed below, and they're also displayed when you pause the game."
-text = "Hi friend! Thanks for alpha testing my new game. I hope you enjoy it.
+text = "READ THIS FIRST
 
-(Sorry for the tiny default font)
+Hi friend! Thanks for testing my new game. I hope you enjoy it.
 
 Free Play is the intended way to play, but I've also included a Target Mode if you want an explicit challenge.
 
-I'd appreciate it if you would try out Free Play first and give me your feedback on the basic experience BEFORE you try Target Mode.
+I'd appreciate if you would give me your feedback on Free Play BEFORE trying Target Mode.
 
 The controls are listed below, and they're also displayed when you pause the game."
 fit_content_height = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ThanksPanel/VBoxContainer"]
-margin_top = 300.0
+margin_top = 292.0
 margin_right = 270.0
-margin_bottom = 433.0
+margin_bottom = 425.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -124,8 +124,8 @@ text = "A
 D
 Spacebar
 Ctrl
-F, Shift
-R, Tilde
+Shift or F
+Tilde or R
 Esc"
 
 [node name="ThanksPanel2" type="Panel" parent="."]
@@ -156,17 +156,25 @@ __meta__ = {
 margin_left = 514.0
 margin_top = 385.0
 margin_right = 834.0
-margin_bottom = 425.0
+margin_bottom = 480.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="ThanksPanel3"]
+[node name="Label" type="RichTextLabel" parent="ThanksPanel3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "Intended for release as a free browser game."
-align = 1
-valign = 1
+margin_left = 10.0
+margin_top = 15.0
+margin_right = -10.0
+margin_bottom = -15.0
+bbcode_enabled = true
+bbcode_text = "[center]Intended for release as a free browser game.
+
+[color=lime]Nothing is final.[/color] Art, sound, music, and font in particular are all expected to change.[/center]"
+text = "Intended for release as a free browser game.
+
+Nothing is final. Art, sound, music, and font in particular are all expected to change."
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -24,7 +24,9 @@ extends Node2D
 # possibly v1.5 or 2.0:
 ## 2 player mode!
 ## target score mode with bonuses/combo multiplier for special moves (eg, off the head, off the floor, off both walls)
-
+## Beach mode: windy + wind indicator, for extra challenge
+## Precise bumps: low bump, med bump, high bump, above shoulders (hit ball behind),
+##                maybe with number keys
 
 const ball_scene := preload("res://src/Ball/RigidBall.tscn")
 const target_controller_scene := preload("res://src/Targets/TargetController.tscn")
