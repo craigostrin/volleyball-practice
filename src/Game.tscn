@@ -19,9 +19,7 @@ script = ExtResource( 3 )
 
 [node name="Environment" type="Node2D" parent="."]
 
-[node name="LeftWall" type="StaticBody2D" parent="Environment" groups=[
-"wall",
-]]
+[node name="LeftWall" type="StaticBody2D" parent="Environment" groups=["wall"]]
 position = Vector2( 0, 61.7 )
 rotation = 1.5708
 collision_layer = 4
@@ -36,9 +34,7 @@ position = Vector2( 232.193, 0.0116762 )
 scale = Vector2( 7, 0.750142 )
 texture = ExtResource( 5 )
 
-[node name="RightWall" type="StaticBody2D" parent="Environment" groups=[
-"wall",
-]]
+[node name="RightWall" type="StaticBody2D" parent="Environment" groups=["wall"]]
 position = Vector2( 1024, 70 )
 rotation = 1.5708
 collision_layer = 4
@@ -53,9 +49,7 @@ position = Vector2( 232, 0 )
 scale = Vector2( 7, 0.75 )
 texture = ExtResource( 5 )
 
-[node name="Floor" type="StaticBody2D" parent="Environment" groups=[
-"floor",
-]]
+[node name="Floor" type="StaticBody2D" parent="Environment" groups=["floor"]]
 position = Vector2( 488, 591 )
 collision_layer = 4
 collision_mask = 2
@@ -72,9 +66,7 @@ texture = ExtResource( 5 )
 pause_mode = 1
 position = Vector2( 212, 194 )
 
-[node name="BallRelease" type="StaticBody2D" parent="BallSpawn" groups=[
-"no_sound",
-]]
+[node name="BallRelease" type="StaticBody2D" parent="BallSpawn" groups=["no_sound"]]
 position = Vector2( 0, 38.055 )
 collision_layer = 4
 collision_mask = 2
@@ -127,9 +119,6 @@ script = ExtResource( 6 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.298039, 0.298039, 0.298039, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 pause_mode = 1

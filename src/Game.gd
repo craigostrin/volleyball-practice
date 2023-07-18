@@ -1,6 +1,9 @@
 extends Node2D
 ### TO DO ###
 
+# add a timer var to reset_ball(n) so you can change the reset_timing easily
+# - maybe add a "pro mode" that's more fast paced
+
 # target mode
 
 # input remapping
@@ -39,6 +42,7 @@ var ball: RigidBody2D
 var target_controller: Node2D
 #var rng := RandomNumberGenerator.new()
 
+onready var player:                     Node2D      = $Player
 onready var ui:                         CanvasLayer = $UI
 onready var pause_ui:                   CanvasLayer = $PauseUI
 onready var ball_spawn_pos:             Vector2 = $BallSpawn.position
@@ -66,6 +70,9 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset_ball"): # LEAVE THIS IN, JUST REMOVE TILDE (maybe)
 		ball = reset_ball()
+	if event.is_action_pressed("reset_ball_and_player"): # LEAVE THIS IN, JUST REMOVE TILDE (maybe)
+		ball = reset_ball()
+		reset_player()
 	if event.is_action_pressed("pause"):
 		get_tree().paused = !get_tree().paused
 		pause_ui.show_pause(get_tree().paused)
@@ -104,6 +111,11 @@ func reset_ball() -> RigidBody2D:
 	ball_release.reset()
 	return spawn_ball()
 	#return launch_ball()
+
+
+func reset_player() -> void:
+	if is_instance_valid(player):
+		player.position.x = 325
 
 
 func _on_ball_stuck_on_floor() -> void:

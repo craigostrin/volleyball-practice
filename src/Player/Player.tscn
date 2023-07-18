@@ -106,9 +106,7 @@ script = ExtResource( 1 )
 position = Vector2( 35.9077, 64.8859 )
 rotation = -0.511169
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Body/HeadTorso" groups=[
-"player",
-]]
+[node name="RigidBody2D" type="RigidBody2D" parent="Body/HeadTorso" groups=["player"]]
 collision_mask = 2
 mode = 3
 
@@ -120,10 +118,7 @@ modulate = Color( 0.435294, 0.239216, 0.501961, 1 )
 scale = Vector2( 0.5, 0.422976 )
 texture = ExtResource( 3 )
 
-[node name="RigidHead2D" type="RigidBody2D" parent="Body/HeadTorso" groups=[
-"head",
-"player",
-]]
+[node name="RigidHead2D" type="RigidBody2D" parent="Body/HeadTorso" groups=["head", "player"]]
 collision_mask = 2
 mode = 3
 
@@ -140,10 +135,7 @@ texture = ExtResource( 2 )
 [node name="Platform" type="Node2D" parent="Body"]
 position = Vector2( 0, 10.803 )
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Body/Platform" groups=[
-"platform",
-"player",
-]]
+[node name="RigidBody2D" type="RigidBody2D" parent="Body/Platform" groups=["platform", "player"]]
 position = Vector2( -17.8299, 60.0858 )
 rotation = 0.299278
 collision_mask = 2
