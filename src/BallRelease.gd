@@ -10,10 +10,10 @@ func _ready() -> void:
 	timer.connect("timeout", self, "_on_Timer_timeout")
 
 
-func reset() -> void:
+func reset(time: float) -> void:
 	show()
 	collider.set_deferred("disabled", false)
-	timer.start()
+	timer.start(time)
 
 
 func _on_Timer_timeout() -> void:

@@ -1,46 +1,44 @@
 extends Node2D
 ### TO DO ###
 
-# add a timer var to reset_ball(n) so you can change the reset_timing easily
-# - maybe add a "pro mode" that's more fast paced
+## NEXT:
+# - new mode (score via alternating walls)
+# - mode: hit ball up once before hitting wall
+# - make a few ball gravity options 
+# - make the ball heavier by default
+# - save high scores 
+# - fix UI
+# - remove bugtesting main menu
 
-# target mode
+# LATER:
+# - target mode
+# - input remapping
 
-# input remapping
-# settings, including detailed UI options (remember, default: hit trackers off)
-# font
-# main menu, mode selection
+# UNSORTED
+# - settings, including detailed UI options (remember, default: hit trackers off)
+# - font
+# - main menu, mode selection
+# - sound: arms swinging? :/
 
 # STATS
 ## save a file with Best stats and Avg stats
 ## lots of fun stuff for targets, like "avg platform hits per target scored
 
-
-# OPTIONAL
-# play: "story" mode with voice or text thoughts, possibly as targets
-# UI: ball's offscreen indicator gets smaller as the ball gets further away
-# sound: arms swinging? :/
-# play/UI: challenges, special moves, score?
-## like, bounce ball off head and then hit wall
-## bump ball twice w/o hitting wall, then hit wall on 3rd bump
-
 # possibly v1.5 or 2.0:
 ## 2 player mode!
 ## target score mode with bonuses/combo multiplier for special moves (eg, off the head, off the floor, off both walls)
 ## Beach mode: windy + wind indicator, for extra challenge
-## Precise bumps: low bump, med bump, high bump, above shoulders (hit ball behind),
-##                maybe with number keys
 
 const ball_scene := preload("res://src/Ball/RigidBall.tscn")
 const target_controller_scene := preload("res://src/Targets/TargetController.tscn")
 
+export var ball_release_time := 3.0
 export var target_mode := false
 export var reset_on_floor := false
 export var ball_launcher_impulse := 600.0
 
 var ball: RigidBody2D
 var target_controller: Node2D
-#var rng := RandomNumberGenerator.new()
 
 onready var player:                     Node2D      = $Player
 onready var ui:                         CanvasLayer = $UI
@@ -84,13 +82,6 @@ func spawn_ball() -> RigidBody2D:
 	return new_ball
 
 
-func launch_ball() -> RigidBody2D:
-	var new_ball = new_ball()
-	new_ball.position = ball_launcher.position
-	new_ball.apply_central_impulse(Vector2(0, -ball_launcher_impulse).rotated(ball_launcher.rotation))
-	return new_ball
-
-
 func new_ball() -> RigidBody2D:
 	var b: RigidBody2D = ball_scene.instance()
 	# warning-ignore:return_value_discarded
@@ -108,14 +99,20 @@ func reset_ball() -> RigidBody2D:
 	if is_instance_valid(ball):
 		ball.queue_free()
 	ui.new_ball()
-	ball_release.reset()
+	ball_release.reset(ball_release_time)
 	return spawn_ball()
-	#return launch_ball()
 
 
 func reset_player() -> void:
 	if is_instance_valid(player):
 		player.position.x = 325
+
+
+func launch_ball() -> RigidBody2D:
+	var new_ball = new_ball()
+	new_ball.position = ball_launcher.position
+	new_ball.apply_central_impulse(Vector2(0, -ball_launcher_impulse).rotated(ball_launcher.rotation))
+	return new_ball
 
 
 func _on_ball_stuck_on_floor() -> void:
