@@ -146,7 +146,7 @@ continuous_cd = 2
 shape = SubResource( 3 )
 
 [node name="arm" type="Sprite" parent="Body/Platform/RigidBody2D"]
-modulate = Color( 0.3306, 0.1824, 0.38, 1 )
+modulate = Color( 0.329412, 0.184314, 0.380392, 1 )
 scale = Vector2( 0.5, 0.603562 )
 texture = ExtResource( 5 )
 

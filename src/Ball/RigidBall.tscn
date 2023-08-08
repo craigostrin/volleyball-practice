@@ -27,7 +27,6 @@ contact_monitor = true
 script = ExtResource( 3 )
 
 [node name="OffscreenIndicator" type="Node2D" parent="."]
-visible = false
 
 [node name="Outline" type="Sprite" parent="OffscreenIndicator"]
 position = Vector2( 0, 36.7606 )

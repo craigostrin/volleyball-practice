@@ -1,0 +1,6 @@
+.DS_store
+*/.DS_store
+
+.import/
+export.cfg
+export_presets.cfg
