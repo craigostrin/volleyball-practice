@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name Ball
 
 # default settings: mass 30, grav scale 10
 
@@ -22,6 +23,7 @@ var radius: float
 # used to cancel out `hit` signals while on floor to prevent hit-counter cheating
 var is_on_floor := false
 
+var muted := false
 enum SoundType { LIGHT, NORMAL, HEAVY }
 
 onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
@@ -99,7 +101,8 @@ func _on_RigidBall_body_entered(body: Node) -> void:
 	
 	# floor sound is handled by `_on_FloorDetector` so it doesn't spam while rolling
 	if sound_type >= 0 and sound_type < SoundType.size():
-		audio_player.play_bump(sound_type)
+		if not muted:
+			audio_player.play_bump(sound_type)
 	
 	if body.is_in_group("floor"):
 		emit_signal("hit", "floor")
@@ -112,7 +115,8 @@ func _on_FloorDetector_body_entered_exited(body: Node, has_entered: bool) -> voi
 	is_on_floor = has_entered
 	if has_entered:
 		ftimer.start()
-		audio_player.play_bump(SoundType.NORMAL)
+		if not muted:
+			audio_player.play_bump(SoundType.NORMAL)
 	else:
 		ftimer.stop()
 

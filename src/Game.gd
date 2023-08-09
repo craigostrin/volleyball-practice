@@ -35,9 +35,10 @@ const target_controller_scene := preload("res://src/Targets/TargetController.tsc
 export var ball_release_time := 3.0
 export var target_mode := false
 export var reset_on_floor := false
+export var muted := false
 export var ball_launcher_impulse := 600.0
 
-var ball: RigidBody2D
+var ball: Ball
 var target_controller: Node2D
 
 onready var player:                     Node2D      = $Player
@@ -48,11 +49,12 @@ onready var ball_release:               StaticBody2D = $BallSpawn/BallRelease
 onready var ball_launcher:              Position2D = $BallLauncher
 onready var platform_hit_count_timer:   Timer = $PlatformHitCountTimer
 onready var wall_hit_count_timer:       Timer = $WallHitCountTimer
-
+onready var floor_reset_checkbox:       CheckBox = $PauseUI/PausePanel/VBoxContainer/ResetOnFloorHbox/FloorResetCheckBox
+onready var mute_checkbox:              CheckBox = $PauseUI/PausePanel/VBoxContainer/MuteHbox/MuteChecbox
 
 func _ready() -> void:
-	var floor_reset_checkbox: CheckBox = $PauseUI/PausePanel/VBoxContainer/HBoxContainer/FloorResetCheckBox
 	floor_reset_checkbox.connect("toggled", self, "_on_floor_reset_checkbox_toggled")
+	mute_checkbox.connect("toggled", self, "_on_mute_checkbox_toggled")
 	
 	if target_mode:
 		target_controller = target_controller_scene.instance() as Node2D
@@ -76,14 +78,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		pause_ui.show_pause(get_tree().paused)
 
 
-func spawn_ball() -> RigidBody2D:
+func spawn_ball() -> Ball:
 	var new_ball = new_ball()
 	new_ball.position = ball_spawn_pos
+	new_ball.muted = muted
 	return new_ball
 
 
-func new_ball() -> RigidBody2D:
-	var b: RigidBody2D = ball_scene.instance()
+func new_ball() -> Ball:
+	var b: Ball = ball_scene.instance()
 	# warning-ignore:return_value_discarded
 	b.connect("stuck_on_floor", self, "_on_ball_stuck_on_floor")
 	# warning-ignore:return_value_discarded
@@ -95,7 +98,7 @@ func new_ball() -> RigidBody2D:
 	return b
 
 
-func reset_ball() -> RigidBody2D:
+func reset_ball() -> Ball:
 	if is_instance_valid(ball):
 		ball.queue_free()
 	ui.new_ball()
@@ -108,7 +111,7 @@ func reset_player() -> void:
 		player.position.x = 325
 
 
-func launch_ball() -> RigidBody2D:
+func launch_ball() -> Ball:
 	var new_ball = new_ball()
 	new_ball.position = ball_launcher.position
 	new_ball.apply_central_impulse(Vector2(0, -ball_launcher_impulse).rotated(ball_launcher.rotation))
@@ -156,3 +159,8 @@ func _on_target_hit() -> void:
 
 func _on_floor_reset_checkbox_toggled(is_button_pressed: bool) -> void:
 	reset_on_floor = is_button_pressed
+
+func _on_mute_checkbox_toggled(is_button_pressed: bool) -> void:
+	muted = is_button_pressed
+	if ball:
+		ball.muted = muted

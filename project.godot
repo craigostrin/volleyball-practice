@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Ball",
+"language": "GDScript",
+"path": "res://src/Ball/RigidBall.gd"
+}, {
 "base": "Area2D",
 "class": "Target",
 "language": "GDScript",
 "path": "res://src/Targets/Target.gd"
 } ]
 _global_script_class_icons={
+"Ball": "",
 "Target": ""
 }
 
