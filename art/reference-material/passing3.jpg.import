@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/passing3a.jpg-ef2409253462e9cac15a626d66547c91.stex"
+path="res://.import/passing3.jpg-51efb19bf87e15464979179a708addc3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/passing3a.jpg"
-dest_files=[ "res://.import/passing3a.jpg-ef2409253462e9cac15a626d66547c91.stex" ]
+source_file="res://art/reference-material/passing3.jpg"
+dest_files=[ "res://.import/passing3.jpg-51efb19bf87e15464979179a708addc3.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

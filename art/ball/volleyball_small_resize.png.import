@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ball_indicator1.png-e474bfe6b57b7ff5b30a08d1fa5d8755.stex"
+path="res://.import/volleyball_small_resize.png-dca3a2c0858fe03ca04b8d9536b2761f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/ball_indicator1.png"
-dest_files=[ "res://.import/ball_indicator1.png-e474bfe6b57b7ff5b30a08d1fa5d8755.stex" ]
+source_file="res://art/ball/volleyball_small_resize.png"
+dest_files=[ "res://.import/volleyball_small_resize.png-dca3a2c0858fe03ca04b8d9536b2761f.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

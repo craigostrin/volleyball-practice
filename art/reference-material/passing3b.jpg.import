@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/volleyball_small_resize.png-248b222157605f73c16a559355dae37b.stex"
+path="res://.import/passing3b.jpg-7d9f69869de3977ac12222fb6f2d3923.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/volleyball_small_resize.png"
-dest_files=[ "res://.import/volleyball_small_resize.png-248b222157605f73c16a559355dae37b.stex" ]
+source_file="res://art/reference-material/passing3b.jpg"
+dest_files=[ "res://.import/passing3b.jpg-7d9f69869de3977ac12222fb6f2d3923.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

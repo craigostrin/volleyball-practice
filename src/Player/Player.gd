@@ -41,7 +41,6 @@ func _physics_process(delta: float) -> void:
 
 func get_movement() -> Vector2:
 	var move_vec := Vector2.ZERO
-	
 	move_vec.x = Input.get_action_strength(move_right_action) - Input.get_action_strength(move_left_action)
 	
 	return move_vec

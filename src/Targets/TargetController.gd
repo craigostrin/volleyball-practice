@@ -26,13 +26,13 @@ func _ready() -> void:
 	target = spawn_target(target_area)
 
 
-func spawn_target(target_area) -> Target:
+func spawn_target(_target_area) -> Target:
 	var t: Target = target_scene.instance()
 	var rpos := Vector2()
 	t.connect("hit", self, "_on_target_hit")
 	add_child(t)
 	
-	match target_area:
+	match _target_area:
 		TargetArea.LEFT_WALL:
 			rpos = Vector2(min_dist_from_wall, (rng.randi() % wall_vertical_range) + min_dist_from_top)
 		TargetArea.CENTER:
@@ -43,7 +43,7 @@ func spawn_target(target_area) -> Target:
 			rpos = Vector2( screen_width - min_dist_from_wall, (rng.randi() % wall_vertical_range) + min_dist_from_top )
 	
 	t.position = rpos
-	t.set_shape(target_area)
+	t.set_shape(_target_area)
 	t.hittable = is_next_target_hittable
 	
 	is_next_target_hittable = false

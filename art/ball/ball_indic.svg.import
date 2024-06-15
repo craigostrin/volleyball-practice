@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ready position.jpg-03c8ac229b2a9e3e09f0aeeb37c9291a.stex"
+path="res://.import/ball_indic.svg-456eb1c55e6fe8e48b916d7ebd4603a4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/ready position.jpg"
-dest_files=[ "res://.import/ready position.jpg-03c8ac229b2a9e3e09f0aeeb37c9291a.stex" ]
+source_file="res://art/ball/ball_indic.svg"
+dest_files=[ "res://.import/ball_indic.svg-456eb1c55e6fe8e48b916d7ebd4603a4.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

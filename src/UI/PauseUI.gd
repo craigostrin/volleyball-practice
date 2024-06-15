@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-signal ui_set()
-
 onready var platform_hits_button: CheckBox = $UISettingsPanel/VBoxContainer/PlatformHits/CheckBox
 onready var platform_last_button: CheckBox = $UISettingsPanel/VBoxContainer/PlatformLast/CheckBox
 onready var platform_best_button: CheckBox = $UISettingsPanel/VBoxContainer/PlatformBest/CheckBox
